@@ -1,0 +1,51 @@
+# Local agent/editor state
+.codex/
+.codex-staging/
+.vscode/
+.idea/
+
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+secrets/
+*.key
+*.pem
+*.pfx
+*.p12
+*.kdbx
+
+# Private exports and backups (review before copying into configs/)
+Exports/
+exports/
+backups/
+LabBackups/
+*.backup
+*.bak
+*.dump
+*.evtx
+
+# Virtual machines, snapshots, installation media and captures
+*.vmdk
+*.vhd
+*.vhdx
+*.vmem
+*.vmss
+*.vmsn
+*.nvram
+*.ova
+*.ovf
+*.iso
+*.pcap
+*.pcapng
+
+# Future IaC: local state may contain secrets
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+
+# Raw logs and OS metadata
+*.log
+Thumbs.db
+.DS_Store
