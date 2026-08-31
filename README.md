@@ -28,6 +28,8 @@ Published configuration files: [MikroTik R1 and SW1 exports](configs/mikrotik/RE
 
 Domain organization, account inventory, policy scope, and screenshots: [Active Directory and Group Policy](docs/active-directory.md).
 
+Shared folders, SMB/NTFS permissions, and client access evidence: [File Server and SMB access](docs/file-server.md).
+
 Dashboards, host inventory, and measurement scope: [Zabbix monitoring](docs/monitoring.md).
 
 Final review: [project results, troubleshooting, and lessons learned](docs/project-results.md).
@@ -89,6 +91,7 @@ docs/
   current-state.md
   network-validation.md
   active-directory.md
+  file-server.md
   monitoring.md
   project-results.md
   architecture/
@@ -98,6 +101,13 @@ evidence/
     README.md
     aduc-departments.png
     gpmc-policy-inventory.png
+  file-server/
+    README.md
+    share-inventory.png
+    smb-read-permissions.png
+    smb-change-permissions.png
+    ntfs-developers.png
+    client-access.png
   monitoring/
     README.md
     hardware-overview.png

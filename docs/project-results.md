@@ -34,7 +34,7 @@ The evidence categories below distinguish observed command output, user-confirme
 | Windows/Linux monitoring | CPU, memory, filesystem values, and history displayed | Hardware dashboard screenshot |
 | Gateway monitoring | Six Up rows with 0.0% loss and sub-millisecond latest latency values | Network Health screenshot |
 
-Detailed supporting records: [network validation](network-validation.md), [AD and Group Policy](active-directory.md), and [Zabbix monitoring](monitoring.md).
+Detailed supporting records: [network validation](network-validation.md), [AD and Group Policy](active-directory.md), [File Server and SMB access](file-server.md), and [Zabbix monitoring](monitoring.md).
 
 The department GPO inventory documents configured state. It does not claim eight separate user sign-in tests. The Zabbix host snapshot also retains DC01's two-problem counter; resource data collection is not presented as a problem-free health assessment.
 

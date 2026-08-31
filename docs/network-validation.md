@@ -13,6 +13,7 @@ This record summarizes manual lab tests. Command-output results and user-confirm
 | Domain controller discovery | USER-WS-001 → `local.domain` | `nltest /dsgetdc:local.domain /force` completed successfully | Command output after firewall changes |
 | Group Policy refresh | USER-WS-001 → DC01 | Computer and user policy updates completed successfully | `gpupdate /force` output after firewall changes |
 | SMB access | CLIENTS → FS01 `10.10.20.20` | Group-based SMB access tested successfully | User-confirmed hands-on test |
+| SMB resource browsing | Client → `\\FS01\IT-Developers` | Explorer displays the share contents | [Client screenshot and permission records](file-server.md); not an individual file-write/delete test |
 | WinBox access restriction | `10.10.30.50` → R1 `10.10.10.1` and SW1 `10.10.10.3`, TCP8291 | Both connection tests returned False | PowerShell output |
 | CCTV management restriction | `10.10.60.200` → R1 and SW1, TCP8291 | Both connection tests returned False | PowerShell output |
 | CCTV DNS/NTP and HTTPS | VLAN60 → WAN | DNS/NTP worked; HTTPS connection failed under the CCTV rules | Results reviewed during the lab |

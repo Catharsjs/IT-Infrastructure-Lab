@@ -50,6 +50,8 @@ The two broad CLIENTS ↔ DC01 allow rules were disabled during testing. DNS SRV
 
 SMB access with group-based permissions was tested successfully.
 
+The [file-server evidence](file-server.md) now records FS01's department shares, the separate SMB and NTFS permissions on `IT-Developers`, and a client screenshot listing the resource alongside `whoami` output. R-group permissions are SMB Read / NTFS Read & execute; M-group permissions are SMB Change / NTFS Modify.
+
 ## Monitoring and logs
 
 - Zabbix Agent 2 7.0.30 on DC01: Running, listening on TCP10050; Windows by Zabbix agent template.
