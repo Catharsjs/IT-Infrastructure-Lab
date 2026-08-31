@@ -30,11 +30,15 @@ This document describes the lab configuration and validation results. Sources in
 - Lab DNS domain: `local.domain`; NetBIOS name: `NETLAB`.
 - Domain controller: DC01.
 - The NETLAB OU contains Admin-Accounts, Disabled Objects, Groups, Servers, Service Accounts, Users, and Workstations.
-- The test user is in `NETLAB/Users/IT/Developers`; the computer is in `NETLAB/Workstations/Developers`.
+- The original test user is in `NETLAB/Users/IT/Developers`; the computer is in `NETLAB/Workstations/Developers`.
+- Sixteen fictional employee accounts populate Finance, HR, IT/Admins, IT/Designers, IT/Developers, IT/QA, Sales, and Security directly. Legacy Demo child OUs were removed.
+- Eight independent `GPO-Dept-...-User` policies configure a 900-second protected screen saver. Finance, HR, Sales, and Security also block Control Panel and Settings; the IT policies explicitly allow them. Policy scope is department-wide, not limited to fictional accounts.
 - The user belongs to departmental/role GG groups and file-permission DL groups.
-- Default Domain Policy applies to the computer; its User Configuration is empty. The N/A result in user-scope gpresult was therefore not a policy delivery failure.
+- Default Domain Policy applies to the computer; its User Configuration is empty. Before the department policies were added, the N/A result in user-scope gpresult was therefore not a policy delivery failure.
 - The dedicated `GPO-WS-Developers-AutoLock` is linked to the Developers computer OU. Machine inactivity limit is 900 seconds. Policy application was confirmed with gpresult; actual locking was confirmed manually.
 - GPO backups were created on DC01 and copied to the physical host PC. AutoLock settings were imported into the unlinked `TEST-AutoLock-Recovery` GPO, and the value of 900 was verified.
+
+The [Active Directory write-up](active-directory.md) includes the OU tree, account inventory, GPO table, current screenshots, and the distinction between configured department policies and the tested workstation AutoLock result.
 
 ## Networking and file server
 

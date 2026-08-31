@@ -17,14 +17,16 @@ This is a **learning project**, not a production deployment. Successful individu
 | Networking | MikroTik CHR R1 and SW1, six VLANs, trunk/access ports, routing, and NAT |
 | Access control | IPv4 firewall, management access restrictions from the client network, and Guest/IoT/CCTV isolation rules |
 | DHCP | Guest/IoT/CCTV scopes on R1; relay from the client VLAN to Windows DHCP |
-| Domain services | AD DS, internal DNS, OUs and groups, and a domain-joined Windows client |
-| Group Policy | Dedicated workstation auto-lock GPO, policy backup, and settings import test |
+| Domain services | AD DS, internal DNS, department OUs and groups, 16 fictional employee accounts, and a domain-joined Windows client |
+| Group Policy | Eight independent department user GPOs, a dedicated workstation auto-lock GPO, policy backup, and settings import test |
 | File server | SMB with group-based access; access testing completed successfully |
 | Monitoring | Zabbix on Ubuntu, Windows/Linux metrics, CPU/RAM/disk dashboards, and ICMP checks of VLAN gateways |
 
 Component versions, configuration details, and test results: [current lab state](docs/current-state.md).
 
 Published configuration files: [MikroTik R1 and SW1 exports](configs/mikrotik/README.md). Manual test results: [network validation](docs/network-validation.md).
+
+Domain organization, account inventory, policy scope, and screenshots: [Active Directory and Group Policy](docs/active-directory.md). Automation: [department policy script](scripts/powershell/README.md).
 
 ## Architecture
 
@@ -64,7 +66,7 @@ Network monitoring measures availability, packet loss, and latency to the VLAN g
 
 1. **Published:** overview, inventory, and architecture.
 2. **Published:** sanitized MikroTik configurations and network test results.
-3. Active Directory, GPOs, and policy application evidence.
+3. **Published:** Active Directory structure, department GPOs, configuration screenshots, and workstation policy test results.
 4. Zabbix dashboards, metrics, and monitoring scope.
 5. Consolidated test results, troubleshooting, and design limitations.
 
@@ -82,8 +84,18 @@ configs/
 docs/
   current-state.md
   network-validation.md
+  active-directory.md
   architecture/
     network-plan.md
+evidence/
+  active-directory/
+    README.md
+    aduc-departments.png
+    gpmc-policy-inventory.png
+scripts/
+  powershell/
+    README.md
+    Set-NetLabDepartmentPolicies.ps1
 ```
 
 ## Safe publication
