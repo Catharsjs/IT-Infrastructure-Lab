@@ -30,6 +30,8 @@ Domain organization, account inventory, policy scope, and screenshots: [Active D
 
 Dashboards, host inventory, and measurement scope: [Zabbix monitoring](docs/monitoring.md).
 
+Final review: [project results, troubleshooting, and lessons learned](docs/project-results.md).
+
 ## Architecture
 
 R1 connects the upstream VMware NAT network to the lab VLANs. SW1 carries tagged traffic over a trunk and provides access ports for individual segments. Servers reside in VLAN20; the domain client resides in VLAN30.
@@ -70,7 +72,7 @@ Network monitoring measures availability, packet loss, and latency to the VLAN g
 2. **Published:** sanitized MikroTik configurations and network test results.
 3. **Published:** Active Directory structure, department GPOs, configuration screenshots, and workstation policy test results.
 4. **Published:** Zabbix dashboards, host inventory, metrics, and monitoring scope.
-5. Consolidated test results, troubleshooting, and design limitations.
+5. **Published:** consolidated test results, troubleshooting cases, design boundaries, and project conclusions.
 
 ## Repository structure
 
@@ -88,6 +90,7 @@ docs/
   network-validation.md
   active-directory.md
   monitoring.md
+  project-results.md
   architecture/
     network-plan.md
 evidence/
