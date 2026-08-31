@@ -57,7 +57,10 @@ SMB access with group-based permissions was tested successfully.
 - Network Health contains six ICMP hosts for VLAN gateways, a status/loss/latency table, and graphs.
 - ICMP checks against addresses on the same R1 do not establish the health of all endpoints and access ports.
 - The frontend uses HTTP on port 8080.
+- The latest host-list capture shows eight enabled hosts: DC01, Zabbix server, and six ICMP gateway targets. DC01 displays two problems; their event details are not shown in the capture.
 - DC01 Security Event Log events 4672 and 5379 were examined: special privileges assigned to a new logon and Credential Manager credentials being read.
+
+See [Zabbix monitoring](monitoring.md) for the current dashboard screenshots, measured snapshot values, tags, and interpretation of monitoring scope.
 
 ## Validation evidence
 

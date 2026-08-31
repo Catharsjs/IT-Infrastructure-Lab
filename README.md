@@ -28,6 +28,8 @@ Published configuration files: [MikroTik R1 and SW1 exports](configs/mikrotik/RE
 
 Domain organization, account inventory, policy scope, and screenshots: [Active Directory and Group Policy](docs/active-directory.md).
 
+Dashboards, host inventory, and measurement scope: [Zabbix monitoring](docs/monitoring.md).
+
 ## Architecture
 
 R1 connects the upstream VMware NAT network to the lab VLANs. SW1 carries tagged traffic over a trunk and provides access ports for individual segments. Servers reside in VLAN20; the domain client resides in VLAN30.
@@ -67,7 +69,7 @@ Network monitoring measures availability, packet loss, and latency to the VLAN g
 1. **Published:** overview, inventory, and architecture.
 2. **Published:** sanitized MikroTik configurations and network test results.
 3. **Published:** Active Directory structure, department GPOs, configuration screenshots, and workstation policy test results.
-4. Zabbix dashboards, metrics, and monitoring scope.
+4. **Published:** Zabbix dashboards, host inventory, metrics, and monitoring scope.
 5. Consolidated test results, troubleshooting, and design limitations.
 
 ## Repository structure
@@ -85,6 +87,7 @@ docs/
   current-state.md
   network-validation.md
   active-directory.md
+  monitoring.md
   architecture/
     network-plan.md
 evidence/
@@ -92,6 +95,11 @@ evidence/
     README.md
     aduc-departments.png
     gpmc-policy-inventory.png
+  monitoring/
+    README.md
+    hardware-overview.png
+    network-health.png
+    host-inventory.png
 ```
 
 ## Safe publication
