@@ -1,34 +1,34 @@
 # IT Infrastructure Lab
 
-Домашня лабораторія системного адміністрування: сегментована мережа, домен Windows, файлові ресурси та моніторинг Windows/Linux.
+A home lab for systems administration: a segmented network, a Windows domain, shared file storage, and Windows/Linux monitoring.
 
-**Стек:** VMware Workstation · MikroTik RouterOS CHR · Windows Server / Active Directory · Windows 11 · Ubuntu · Zabbix.
+**Stack:** VMware Workstation · MikroTik RouterOS CHR · Windows Server / Active Directory · Windows 11 · Ubuntu · Zabbix.
 
-## Мета проєкту
+## Project goals
 
-Відпрацювати побудову та підтримку невеликої IT-інфраструктури: налаштувати мережу, забезпечити доменні служби, розмежувати доступ і перевірити результат. Окрема увага — поясненню рішень, діагностиці несправностей та документуванню обмежень.
+Practice building and maintaining a small IT infrastructure: configure networking, deploy domain services, control access, and validate the results. The project also develops troubleshooting skills and documents the reasoning behind configuration choices.
 
-Це **навчальний проєкт**, не опис виробничої інфраструктури. Працездатність окремих сценаріїв не означає повного аудиту безпеки, відмовостійкості або готовності до відновлення після аварії.
+This is a **learning project**, not a production deployment. Successful individual tests do not constitute a comprehensive security audit, high-availability validation, or disaster recovery certification.
 
-## Що реалізовано
+## Implemented features
 
-| Напрям | Реалізація |
+| Area | Implementation |
 |---|---|
-| Мережа | R1 і SW1 на MikroTik CHR, шість VLAN, trunk/access-порти, маршрутизація та NAT |
-| Контроль доступу | IPv4 Firewall, обмеження керування з клієнтської мережі, правила ізоляції Guest/IoT/CCTV |
-| DHCP | Guest/IoT/CCTV на R1; relay із клієнтського VLAN до Windows DHCP |
-| Домен | AD DS, внутрішній DNS, OU та групи; доменний клієнт Windows |
-| Group Policy | Окрема GPO автоблокування робочої станції; резервування та тест імпорту налаштувань |
-| Файловий сервер | SMB із груповим доступом; перевірка доступу успішна |
-| Моніторинг | Zabbix на Ubuntu, метрики Windows/Linux, dashboards CPU/RAM/дисків і ICMP до шлюзів VLAN |
+| Networking | MikroTik CHR R1 and SW1, six VLANs, trunk/access ports, routing, and NAT |
+| Access control | IPv4 firewall, management access restrictions from the client network, and Guest/IoT/CCTV isolation rules |
+| DHCP | Guest/IoT/CCTV scopes on R1; relay from the client VLAN to Windows DHCP |
+| Domain services | AD DS, internal DNS, OUs and groups, and a domain-joined Windows client |
+| Group Policy | Dedicated workstation auto-lock GPO, policy backup, and settings import test |
+| File server | SMB with group-based access; access testing completed successfully |
+| Monitoring | Zabbix on Ubuntu, Windows/Linux metrics, CPU/RAM/disk dashboards, and ICMP checks of VLAN gateways |
 
-Версії компонентів, налаштування та результати практики: [поточний стан](docs/current-state.md).
+Component versions, configuration details, and test results: [current lab state](docs/current-state.md).
 
-## Архітектура
+## Architecture
 
-R1 з'єднує зовнішню VMware NAT-мережу з лабораторними VLAN. SW1 передає tagged-трафік через trunk і надає access-порти окремим сегментам. Сервери розміщені у VLAN20, доменний клієнт — у VLAN30.
+R1 connects the upstream VMware NAT network to the lab VLANs. SW1 carries tagged traffic over a trunk and provides access ports for individual segments. Servers reside in VLAN20; the domain client resides in VLAN30.
 
-| VLAN | Роль | Підмережа |
+| VLAN | Role | Subnet |
 |---:|---|---|
 | 10 | Management | `10.10.10.0/24` |
 | 20 | Servers | `10.10.20.0/24` |
@@ -37,36 +37,36 @@ R1 з'єднує зовнішню VMware NAT-мережу з лаборатор�
 | 50 | IoT | `10.10.50.0/24` |
 | 60 | CCTV | `10.10.60.0/24` |
 
-Адреси в документації належать навчальному стенду. Деталі портів, DHCP та доступу: [мережевий план](docs/architecture/network-plan.md).
+The addresses in this documentation belong to the lab. See the [network plan](docs/architecture/network-plan.md) for interfaces, DHCP, and access rules.
 
-## Перевірені сценарії
+## Validated scenarios
 
-- Отримання клієнтом DHCP-адрес у VLAN50 і VLAN60.
-- Пошук доменного DNS SRV-запису та контролера домену.
-- Оновлення GPO після вимкнення широких дозволів CLIENTS ↔ DC01.
-- Застосування AutoLock GPO та фактичне блокування після 15 хвилин бездіяльності.
-- Блокування TCP8291-з'єднання з VLAN30 до R1/SW1.
-- Успішний SMB-доступ із груповим розмежуванням.
-- Робота DNS/NTP із VLAN60 та невдале HTTPS-з'єднання відповідно до правил CCTV.
-- Відображення метрик Windows/Linux і ICMP-показників шлюзів у Zabbix.
+- Client DHCP address assignment in VLAN50 and VLAN60.
+- Domain DNS SRV lookup and domain controller discovery.
+- Group Policy refresh after disabling broad CLIENTS ↔ DC01 allow rules.
+- AutoLock GPO application and actual workstation locking after 15 minutes of inactivity.
+- Blocked TCP8291 connections from VLAN30 to R1/SW1.
+- Successful SMB access with group-based permissions.
+- Working DNS/NTP from VLAN60 and blocked HTTPS connections under the CCTV rules.
+- Windows/Linux metrics and gateway ICMP results displayed in Zabbix.
 
-Результати отримані під час ручного налаштування та тестування стенда.
+These results were obtained through manual lab configuration and testing.
 
-## Платформа
+## Platform
 
-Фізичний хост: Ryzen 5 2600, 16 GB DDR4, VMware Workstation 26.0.0 (build 25388281). Гостьові ОС: Windows Server 2025 Standard Evaluation, Windows 11 Pro та Ubuntu 26.04 LTS. R1 і SW1 — віртуальні MikroTik CHR.
+Physical host: Ryzen 5 2600, 16 GB DDR4, VMware Workstation 26.0.0 (build 25388281). Guest operating systems: Windows Server 2025 Standard Evaluation, Windows 11 Pro, and Ubuntu 26.04 LTS. R1 and SW1 are virtual MikroTik CHR instances.
 
-Мережевий моніторинг вимірює доступність, втрати пакетів і затримку до IP-адрес шлюзів VLAN на R1. Це моніторинг шлюзів, а не всіх пристроїв сегмента.
+Network monitoring measures availability, packet loss, and latency to the VLAN gateway IP addresses on R1. It monitors the gateways, not every device in each segment.
 
-## Етапи публікації
+## Publication stages
 
-1. **Опис, інвентаризація та архітектура — цей етап.**
-2. Очищені конфігурації MikroTik і результати мережевих перевірок.
-3. Active Directory, GPO та докази застосування політик.
-4. Zabbix: dashboards, метрики та межі моніторингу.
-5. Підсумковий реєстр тестів, troubleshooting та відомі обмеження.
+1. **Overview, inventory, and architecture — this stage.**
+2. Sanitized MikroTik configurations and network test results.
+3. Active Directory, GPOs, and policy application evidence.
+4. Zabbix dashboards, metrics, and monitoring scope.
+5. Consolidated test results, troubleshooting, and design limitations.
 
-## Структура
+## Repository structure
 
 ```text
 README.md
@@ -78,12 +78,12 @@ docs/
     network-plan.md
 ```
 
-## Безпечна публікація
+## Safe publication
 
-Не публікуються паролі, ключі, токени, сирі Security logs, диски VM, бінарні резервні копії або дані реального віддаленого доступу. Скриншоти й експорти перевіряються вручну перед додаванням. `.gitignore` зменшує ризик випадкового додавання файлів, але не замінює перевірку вмісту.
+Passwords, keys, tokens, raw Security logs, VM disks, binary backups, and real remote-access details are excluded. Screenshots and exports are reviewed manually before inclusion. `.gitignore` reduces accidental file inclusion but does not replace content review.
 
-Конфігурації з навчальних матеріалів не слід імпортувати в чинну мережу без аналізу адресації, інтерфейсів, версій і плану повернення.
+Do not import lab configurations into an existing network without reviewing addressing, interfaces, software versions, and a rollback plan.
 
-## Ліцензія
+## License
 
 [MIT](LICENSE).
