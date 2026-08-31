@@ -4,6 +4,9 @@
 .vscode/
 .idea/
 
+# PowerShell scripts are kept locally and excluded from this publication stage.
+/scripts/powershell/
+
 # Secrets and local environment
 .env
 .env.*

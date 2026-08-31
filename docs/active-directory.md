@@ -119,15 +119,11 @@ This differs from the department **user** screen-saver settings: computer settin
 
 GPO backups were saved on DC01 and copied outside the VM. The AutoLock settings were imported into `TEST-AutoLock-Recovery`, and the 900-second value was checked. This was a GPO settings recovery exercise, not a full Active Directory restore. The recovery GPO remains in the inventory and was not modified by the department conversion.
 
-## Automation and migration
-
-The [department policy script](../scripts/powershell/Set-NetLabDepartmentPolicies.ps1) implements the published baseline. See [execution and safety notes](../scripts/powershell/README.md) before using it.
+## Policy migration
 
 The migration backed up owned policies, renamed `GPO-DEMO-*` to `GPO-Dept-*` without recreating their GUIDs, replaced demo-group filtering with department-wide scope, and removed the old empty Demo OUs. Existing users and passwords were preserved.
 
 One cleanup issue was diagnosed from read-only output: all eight old OUs had zero children and zero direct GPO links, but their raw `gPLink` value contained a space. The original emptiness check treated that space as a link. The corrected script trims whitespace before testing the attribute; it still rejects actual links and uses non-recursive OU deletion.
-
-The earlier combined demo provisioner is deliberately excluded from this publication because it would recreate the superseded `GPO-DEMO` layout. The published policy script does not create users or groups.
 
 ## Evidence and validation
 

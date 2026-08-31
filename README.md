@@ -26,7 +26,7 @@ Component versions, configuration details, and test results: [current lab state]
 
 Published configuration files: [MikroTik R1 and SW1 exports](configs/mikrotik/README.md). Manual test results: [network validation](docs/network-validation.md).
 
-Domain organization, account inventory, policy scope, and screenshots: [Active Directory and Group Policy](docs/active-directory.md). Automation: [department policy script](scripts/powershell/README.md).
+Domain organization, account inventory, policy scope, and screenshots: [Active Directory and Group Policy](docs/active-directory.md).
 
 ## Architecture
 
@@ -92,10 +92,6 @@ evidence/
     README.md
     aduc-departments.png
     gpmc-policy-inventory.png
-scripts/
-  powershell/
-    README.md
-    Set-NetLabDepartmentPolicies.ps1
 ```
 
 ## Safe publication
