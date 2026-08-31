@@ -24,6 +24,8 @@ This is a **learning project**, not a production deployment. Successful individu
 
 Component versions, configuration details, and test results: [current lab state](docs/current-state.md).
 
+Published configuration files: [MikroTik R1 and SW1 exports](configs/mikrotik/README.md). Manual test results: [network validation](docs/network-validation.md).
+
 ## Architecture
 
 R1 connects the upstream VMware NAT network to the lab VLANs. SW1 carries tagged traffic over a trunk and provides access ports for individual segments. Servers reside in VLAN20; the domain client resides in VLAN30.
@@ -60,8 +62,8 @@ Network monitoring measures availability, packet loss, and latency to the VLAN g
 
 ## Publication stages
 
-1. **Overview, inventory, and architecture — this stage.**
-2. Sanitized MikroTik configurations and network test results.
+1. **Published:** overview, inventory, and architecture.
+2. **Published:** sanitized MikroTik configurations and network test results.
 3. Active Directory, GPOs, and policy application evidence.
 4. Zabbix dashboards, metrics, and monitoring scope.
 5. Consolidated test results, troubleshooting, and design limitations.
@@ -72,8 +74,14 @@ Network monitoring measures availability, packet loss, and latency to the VLAN g
 README.md
 LICENSE
 .gitignore
+configs/
+  mikrotik/
+    README.md
+    R1-config.rsc
+    SW1-config.rsc
 docs/
   current-state.md
+  network-validation.md
   architecture/
     network-plan.md
 ```

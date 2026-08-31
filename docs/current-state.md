@@ -40,6 +40,8 @@ This document describes the lab configuration and validation results. Sources in
 
 VLANs, DHCP, interfaces, and access rules are described in the [network plan](architecture/network-plan.md).
 
+The [sanitized MikroTik exports](../configs/mikrotik/README.md) preserve the deployed commands. The [network validation record](network-validation.md) summarizes manual tests and export checks.
+
 The two broad CLIENTS ↔ DC01 allow rules were disabled during testing. DNS SRV lookup, gpupdate, and nltest /dsgetdc with /force all succeeded after the changes.
 
 SMB access with group-based permissions was tested successfully.

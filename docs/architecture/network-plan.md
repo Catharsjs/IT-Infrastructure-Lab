@@ -2,6 +2,8 @@
 
 As of **2026-08-31**. The tables reflect reviewed exports, subsequent manual rule reordering, and hands-on test results. This is a configuration description, not an import script.
 
+Source configurations: [R1](../../configs/mikrotik/R1-config.rsc) and [SW1](../../configs/mikrotik/SW1-config.rsc). See [export notes](../../configs/mikrotik/README.md) for sanitization and usage details, and [network validation](../network-validation.md) for test results.
+
 ## Topology and roles
 
 The upstream VMware NAT network connects to R1's WAN interface. TRUNK-SW1 on R1 connects to TRUNK-R1 on SW1. SW1 distributes VLANs through access ports; R1 hosts all six VLAN gateways and performs routing.
